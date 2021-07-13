@@ -34,13 +34,15 @@ def build_model(input_data):
     st.markdown(filedownload(df), unsafe_allow_html=True)
 
 # Logo image
-image = Image.open('logo.png')
+#image = Image.open('logo.png')
 
-st.image(image, use_column_width=True)
+#st.image(image, use_column_width=True)
 
 # Page title
 st.markdown("""
 # Bioactivity Prediction App (CHEMBL2366922)
+
+## By Lwasampijja Baker
 This app allows you to predict the bioactivity towards inhibting the target CHEMBL2366922.
 
 [See Methods](https://github.com/baker371/Drug-Discovery/blob/main/Malaria_Drug_Discovery/Steps.ipynb)
