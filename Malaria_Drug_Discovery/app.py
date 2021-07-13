@@ -10,9 +10,7 @@ import pickle
 # Molecular descriptor calculator
 def desc_calc():
     # Performs the descriptor calculation
-    bashCommand = "java -Xms2G -Xmx2G -Djava.awt.headless=true -jar ./PaDEL-Descriptor/PaDEL-Descriptor.jar -removesalt -standardizenitro -fingerprints -descriptortypes ./PaDEL-Descriptor/PubchemFingerprinter.xml -dir ./ -file descriptors_output.csv"
-    process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
-    output, error = process.communicate()
+    bashCommand = padeldescriptor(fingerprints=True,removesalt=True,standardizenitro=True,  mol_dir='molecules.smi', d_file='descriptors_output.csv')
     os.remove('molecule.smi')
 
 # File download
