@@ -43,7 +43,7 @@ st.markdown("""
 # Bioactivity Prediction App (CHEMBL2366922)
 This app allows you to predict the bioactivity towards inhibting the target CHEMBL2366922.
 
-[See Methods](https://github.com/baker371/Drug-Discovery/blob/main/Malaria%20Drug%20Discovery/Steps.ipynb)
+[See Methods](https://github.com/baker371/Drug-Discovery/blob/main/Malaria_Drug_Discovery/Steps.ipynb)
 
 """)
 
@@ -51,7 +51,7 @@ This app allows you to predict the bioactivity towards inhibting the target CHEM
 with st.sidebar.header('1. Upload your CSV data'):
     uploaded_file = st.sidebar.file_uploader("Upload your input file", type=['txt'])
     st.sidebar.markdown("""
-[Example input file](https://github.com/baker371/Drug-Discovery/blob/main/Malaria%20Drug%20Discovery/sample.txt)
+[Example input file](https://github.com/baker371/Drug-Discovery/blob/main/Malaria_Drug_Discovery/sample.txt)
 """)
 
 if st.sidebar.button('Predict'):
