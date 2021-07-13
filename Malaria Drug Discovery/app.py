@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from PIL import Image
+from padelpy import padeldescriptor
 import subprocess
 import os
 import base64
@@ -9,7 +10,7 @@ import pickle
 # Molecular descriptor calculator
 def desc_calc():
     # Performs the descriptor calculation
-    bashCommand = "java -Xms2G -Xmx2G -Djava.awt.headless=true -jar ./PaDEL-Descriptor/PaDEL-Descriptor.jar -removesalt -standardizenitro -fingerprints -descriptortypes ./PaDEL-Descriptor/PubchemFingerprinter.xml -dir ./ -file descriptors_output.csv"
+    bashCommand = padeldescriptor(fingerprints=True,removesalt=True,standardizenitro=True,  mol_dir='molecules.smi', d_file='descriptors_output.csv')
     process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
     output, error = process.communicate()
     os.remove('molecule.smi')
@@ -41,19 +42,18 @@ st.image(image, use_column_width=True)
 
 # Page title
 st.markdown("""
-# Bioactivity Prediction App (Acetylcholinesterase)
-This app allows you to predict the bioactivity towards inhibting the `Acetylcholinesterase` enzyme. `Acetylcholinesterase` is a drug target for Alzheimer's disease.
-**Credits**
-- App built in `Python` + `Streamlit` by [Chanin Nantasenamat](https://medium.com/@chanin.nantasenamat) (aka [Data Professor](http://youtube.com/dataprofessor))
-- Descriptor calculated using [PaDEL-Descriptor](http://www.yapcwsoft.com/dd/padeldescriptor/) [[Read the Paper]](https://doi.org/10.1002/jcc.21707).
----
+# Bioactivity Prediction App (CHEMBL2366922)
+This app allows you to predict the bioactivity towards inhibting the target CHEMBL2366922.
+
+[See Methods](https://github.com/baker371/Drug-Discovery/blob/main/Malaria%20Drug%20Discovery/Steps.ipynb)
+
 """)
 
 # Sidebar
 with st.sidebar.header('1. Upload your CSV data'):
     uploaded_file = st.sidebar.file_uploader("Upload your input file", type=['txt'])
     st.sidebar.markdown("""
-[Example input file](https://raw.githubusercontent.com/dataprofessor/bioactivity-prediction-app/main/example_acetylcholinesterase.txt)
+[Example input file](https://github.com/baker371/Drug-Discovery/blob/main/Malaria%20Drug%20Discovery/sample.txt)
 """)
 
 if st.sidebar.button('Predict'):
